@@ -1,0 +1,93 @@
+Part One: Solidify Terminology
+
+HTTP (Hypertext Transfer Protocol):
+HTTP is a protocol used for communication between a client (usually a web browser) and a server on the World Wide Web. It defines the structure of requests and responses that enable the exchange of data, such as web pages, images, videos, etc., between the client and the server.
+
+URL (Uniform Resource Locator):
+A URL is a reference or address used to access resources on the internet. It consists of several components, including the protocol (e.g., HTTP, HTTPS), domain name (e.g., somesite.com), path (e.g., /some/page.html), and optional query parameters (e.g., ?query=example).
+
+DNS (Domain Name System):
+DNS is a decentralized system that translates human-readable domain names (like somesite.com) into IP addresses (like 192.0.2.1) that computers use to locate and communicate with each other over the internet.
+
+Query String:
+A query string is a part of a URL that follows the question mark symbol (?). It contains parameters in the form of key-value pairs used to pass data to a web server. For example, in the URL "http://somesite.com/search?q=example," the query string is "q=example."
+
+Two HTTP Verbs and their differences:
+HTTP verbs (or methods) indicate the type of action requested in an HTTP request. Two common HTTP verbs are:
+
+GET: Used to request data from a server. It retrieves information specified in the URL and does not have a request body.
+POST: Used to send data to the server, often to submit data to be processed or saved. It can include a request body to send data.
+HTTP Request:
+An HTTP request is a message sent by a client to a server, asking for specific information or an action to be performed. It consists of a request line, headers, an optional request body (used in some HTTP methods like POST), and sometimes a query string.
+
+HTTP Response:
+An HTTP response is a message sent by a server to a client in response to an HTTP request. It contains the requested information, status codes indicating the success or failure of the request, headers, and an optional response body (e.g., HTML content).
+
+HTTP Header:
+An HTTP header is a part of both the request and response messages and contains metadata about the request/response. Examples of headers include:
+
+Request Header: "User-Agent" (identifies the client), "Accept-Language" (specifies the preferred language), etc.
+Response Header: "Content-Type" (indicates the type of data in the response body), "Location" (used in redirects), etc.
+
+PART 2
+edward@equansah1000D:~/Desktop$ curl -H "Accept: application/json" https://icanhazdadjoke.com/search?term=pirate
+{"current_page":1,"limit":20,"next_page":1,"previous_page":1,"results":[{"id":"QuscibaMClb","joke":"What does a pirate pay for his corn? A buccaneer!"},{"id":"SvzIBAQS0Dd","joke":"What did the pirate say on his 80th birthday? Aye Matey!"},{"id":"2gii3LeN7Ed","joke":"Why couldn't the kid see the pirate movie? Because it was rated arrr!"},{"id":"SnOf2gqjiqc","joke":"Why are pirates called pirates? Because they arrr!"},{"id":"exXSCtkOKe","joke":"Why do pirates not know the alphabet? They always get stuck at \"C\"."}],"search_term":"pirate","status":200,"total_jokes":5,"total_pages":1}
+edward@equansah1000D:~/Desktop$ dig +short icanhazdadjoke.com
+104.21.66.15
+172.67.198.173
+edward@equansah1000D:~/Desktop$ 
+
+edward@equansah1000D:~/Desktop/using curls$ python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+127.0.0.1 - - [26/Jul/2023 22:16:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Jul/2023 22:16:21] code 404, message File not found
+127.0.0.1 - - [26/Jul/2023 22:16:21] "GET /favicon.ico HTTP/1.1" 404 -
+
+http://localhost:8000/
+
+Welcome to my web page!
+This is some content on my web page.
+
+PART 3
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Form</title>
+</head>
+<body>
+    <h1>Simple Form</h1>
+    <form method="POST" action="form.html">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+
+PART 4
+
+// Create a new URL object with a sample URL
+const url = new URL('https://www.example.com/search?query=term');
+
+// Access and print specific URL components
+console.log(url.protocol); // Output: "https:"
+console.log(url.host);     // Output: "www.example.com"
+console.log(url.pathname); // Output: "/search"
+console.log(url.search);   // Output: "?query=term"
+
+// Modify the query parameter and get the updated URL
+url.searchParams.set('query', 'newterm');
+console.log(url.href);     // Output: "https://www.example.com/search?query=newterm"
+
+VM68:5 https:
+VM68:6 www.example.com
+VM68:7 /search
+VM68:8 ?query=term
+VM68:12 https://www.example.com/search?query=newterm
+undefined
